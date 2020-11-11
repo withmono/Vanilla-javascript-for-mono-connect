@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mono Connect test</title>
+
+    <style>
+      .p-5 {
+        padding: 5em;
+      }
+    </style>
+
+    <script type="application/javascript" src="https://connect.withmono.com/connect.js"></script>
+  </head>
+
+  <body>
+    <div className="p-5">
+      <p>Welcome to Mono Connect.</p>
+      <button id="launch-btn">Link a financial account</button>
+    </div>
+
+    <script type="application/javascript">
+			var connect;
+
+      var options = {
+        onSuccess: function (response) {
+          alert(JSON.stringify(response));
+					connect.close(); 
+					/**
+						response : { "code": "code_xyz" }
+						you can send this code back to your server to get this
+						authenticated account and start making requests.
+					*/
+        },
+
+        onClose: function () {
+          alert('user closed the widget.')
+        }
+      };
+
+      connect = new Connect("live_pk_PnNCu36dBgUxC1LnxffU", options);
+      connect.setup();
+
+      var launch = document.getElementById('launch-btn');
+      launch.onclick = function (e) {
+        connect.open();
+      };
+    </script>
+  </body>
+</html>
