@@ -1,2 +1,2 @@
 # A-sample-widget-setup
-Mono connect widget sample implementation
+Mono connect widget sample JS/html implementation. 
