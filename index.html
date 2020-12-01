@@ -21,10 +21,11 @@
     <script type="application/javascript">
 			var connect;
 
-      var options = {
+      var config = {
+        key: "live_pk_PnNCu36dBgUxC1LnxffU",
+
         onSuccess: function (response) {
           alert(JSON.stringify(response));
-					connect.close(); 
 					/**
 						response : { "code": "code_xyz" }
 						you can send this code back to your server to get this
@@ -37,7 +38,7 @@
         }
       };
 
-      connect = new Connect("live_pk_PnNCu36dBgUxC1LnxffU", options);
+      connect = new Connect(config);
       connect.setup();
 
       var launch = document.getElementById('launch-btn');
