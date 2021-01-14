@@ -1,50 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>Mono Connect test</title>
-
     <style>
-      .p-5 {
-        padding: 5em;
-      }
-    </style>
-
-    <script type="application/javascript" src="https://connect.withmono.com/connect.js"></script>
-  </head>
-
-  <body>
-    <div className="p-5">
-      <p>Welcome to Mono Connect.</p>
-      <button id="launch-btn">Link a financial account</button>
-    </div>
-
-    <script type="application/javascript">
-			var connect;
-
-      var config = {
-        key: "your_public_key_here",
-
-        onSuccess: function (response) {
-          alert(JSON.stringify(response));
-					/**
-						response : { "code": "code_xyz" }
-						you can send this code back to your server to get this
-						authenticated account and start making requests.
-					*/
-        },
-
-        onClose: function () {
-          alert('user closed the widget.')
+        .p-5 {
+            padding: 5em;
         }
-      };
-
-      connect = new Connect(config);
-      connect.setup();
-
-      var launch = document.getElementById('launch-btn');
-      launch.onclick = function (e) {
-        connect.open();
-      };
-    </script>
-  </body>
+    </style>
+    <script type="application/javascript" src="https://connect.withmono.com/connect.js"></script>
+</head>
+<body>
+<div className="p-5">
+    <p>Welcome to Mono Connect.</p>
+    <button id="launch-btn">Link a financial account</button>
+</div>
+<script type="application/javascript">
+  const copyToClipboard = text => {
+    const elm = document.createElement('textarea');
+    elm.value = text;
+    document.body.appendChild(elm);
+    elm.select();
+    document.execCommand('copy');
+    document.body.removeChild(elm);
+  };
+  var connect;
+  var config = {
+    key: "YOUR_PUBLIC_KEY_HERE",
+    onSuccess: function (response) {
+      copyToClipboard(response.code);
+      console.log(JSON.stringify(response));
+      alert(JSON.stringify(response));
+      /**
+       response : { "code": "code_xyz" }
+       you can send this code back to your server to get this
+       authenticated account and start making requests.
+       */
+    },
+    onClose: function () {
+      console.log('user closed the widget.')
+    }
+  };
+  connect = new Connect(config);
+  connect.setup();
+  var launch = document.getElementById('launch-btn');
+  launch.onclick = function (e) {
+    connect.open();
+  };
+</script>
+</body>
 </html>
