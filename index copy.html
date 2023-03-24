@@ -8,6 +8,9 @@
         }
     </style>
     <script type="application/javascript" src="https://connect.withmono.com/connect.js"></script>
+    <!-- const axios = require('axios'); -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div className="p-5">
@@ -25,7 +28,7 @@
   };
   var connect;
   var config = {
-    key: "YOUR_PUBLIC_KEY_HERE",
+    key: "test_pk_TVniFIVKizrj0IQtFwrm",
     onSuccess: function (response) {
       copyToClipboard(response.code);
       console.log(JSON.stringify(response));
@@ -35,6 +38,33 @@
        you can send this code back to your server to get this
        authenticated account and start making requests.
        */
+      // New start
+      // const axios = require('axios');
+
+      const options = {
+        method: 'POST',
+        url: 'https://api.withmono.com/account/auth',
+        headers: {
+          accept: 'application/json',
+          'mono-sec-key': 'test_sk_W1r0TVeO63Ry4PbW846N',
+          'Content-Type': 'application/json'
+        },
+        data: { code: response.code } //{ code: '3434345' }
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          console.log(response.data);
+          console.log(JSON.stringify(response));
+          alert(JSON.stringify(response));
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+      // New End
+
+
     },
     onClose: function () {
       console.log('user closed the widget.')
