@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Mono Connect test</title>
+  <style>
+    .p-5 {
+      padding: 5em;
+    }
+  </style>
+  <script type="application/javascript" src="https://connect.withmono.com/connect.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div className="p-5">
+    <p>Welcome to Mono Connect.</p>
+    <button id="launch-btn">Link a financial account</button>
+  </div>
+  <script type="module">
+    const copyToClipboard = text => {
+      const elm = document.createElement('textarea');
+      elm.value = text;
+      document.body.appendChild(elm);
+      elm.select();
+      document.execCommand('copy');
+      document.body.removeChild(elm);
+    };
+    var connect;
+    var config = {
+      key: process.env.MONO_PUBLIC_KEY,// "test_pk_TVniFIVKizrj0IQtFwrm",
+      onSuccess: function (response) {
+        copyToClipboard(response.code);
+        console.log(JSON.stringify(response));
+        alert(JSON.stringify(response));
+        /**
+         response : { "code": "code_xyz" }
+         you can send this code back to your server to get this
+         authenticated account and start making requests.
+         */
+        // console.log("MONO_PUBLIC_KEY", process.env.MONO_PUBLIC_KEY);
+        // console.log("MONO_SEC_KEY",process.env.MONO_SEC_KEY); 
+
+        // New start
+        // Call API endpoint to get Account Id with the response code
+        const options = {
+          method: 'POST',
+          url: 'http://192.168.0.105:3333/api/v2/bankingservices/identity_validation', // 'https://api.withmono.com/account/auth', 
+          headers: {
+            accept: 'application/json',
+            // 'mono-sec-key':  process.env.MONO_SEC_KEY,//'test_sk_W1r0TVeO63Ry4PbW846N',
+            'Content-Type': 'application/json'
+          },
+          data: { code: response.code }, //{ code: '3434345' }
+        };
+
+
+        axios
+          .request(options)
+          .then(function (response) {
+            // console.log(response.data.id);
+            // console.log(JSON.stringify(response.data.id));
+            // alert(JSON.stringify(response.data.id));
+            console.log(response.data);
+            console.log(JSON.stringify(response.data));
+            alert(JSON.stringify(response.data));
+            // console.log("MONO_PUBLIC_KEY", process.env.MONO_PUBLIC_KEY);
+            // console.log("MONO_SEC_KEY", process.env.MONO_SEC_KEY);
+
+            // Get identity
+            // New start
+            // let response = await axios.get(`${MONO_BASE_URL}/accounts/${accountId}/identity`, { headers: headers });
+            // const options = {
+            //   method: 'GET',
+            //   url: `${process.env.MONO_BASE_URL}/accounts/${response.data.id}/identity`,
+            //   headers: {
+            //     accept: 'application/json',
+            //     'mono-sec-key': process.env.MONO_SEC_KEY,//'test_sk_W1r0TVeO63Ry4PbW846N',
+            //     'Content-Type': 'application/json'
+            //   },
+            //   // data: { code: response.code } //{ code: '3434345' }
+            // };
+
+            // axios
+            //   .request(options)
+            //   .then(function (response) {
+            //     console.log(response.data);
+            //     console.log(JSON.stringify(response.data.bvn));
+            //     alert(JSON.stringify(response.data));
+
+            //   })
+            //   .catch(function (error) {
+            //   console.error(error);
+            // }
+            // );
+            // New End
+
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+        // New End
+        //  Refactor
+
+
+      },
+      onClose: function () {
+        console.log('user closed the widget.')
+      }
+    };
+    connect = new Connect(config);
+    connect.setup();
+    var launch = document.getElementById('launch-btn');
+    launch.onclick = function (e) {
+      connect.open();
+    };
+  </script>
+  <script type="module" src="app.ts" ></script>
+</body>
+
+</html>

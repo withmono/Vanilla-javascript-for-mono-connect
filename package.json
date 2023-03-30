@@ -1,0 +1,61 @@
+{
+  
+  "name": "vanilla-javascript-for-mono-connect",
+  
+  "description": "This is a simple HTML and vanilla Javascript implementation of the Mono Connect widget. To get started:",
+  
+  "version": "1.0.0",
+  
+  "main": "index.js",
+  
+  "scripts": {
+  
+    
+  "devHtml": "parcel index.html",
+  
+    
+  "buildHtml": "parcel build index.html",
+  
+    
+  "pushToGithub": "npm run buildHtml && git push -u michael-alao Update-index.html"
+  
+  },
+  
+  "repository": {
+  
+    
+  "type": "git",
+  
+    
+  "url": "git+https://github.com/withmono/Vanilla-javascript-for-mono-connect.git"
+  
+  },
+  
+  "keywords": [],
+  
+  "author": "",
+  
+  "license": "ISC",
+  
+  "bugs": {
+  
+    
+  "url": "https://github.com/withmono/Vanilla-javascript-for-mono-connect/issues"
+  
+  },
+  
+  "homepage": "https://github.com/withmono/Vanilla-javascript-for-mono-connect#readme",
+  
+  "dependencies": {
+  
+    
+  "@mono.co/connect.js": "^0.2.2",
+  
+    
+  "parcel": "^2.8.3",
+  
+    
+  "regenerator-runtime": "^0.13.11"
+  
+  }
+}
