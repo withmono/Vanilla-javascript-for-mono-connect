@@ -596,9 +596,7 @@ var config = {
          response : { "code": "code_xyz" }
          you can send this code back to your server to get this
          authenticated account and start making requests.
-         */ // console.log("MONO_PUBLIC_KEY", process.env.MONO_PUBLIC_KEY);
-        // console.log("MONO_SEC_KEY",process.env.MONO_SEC_KEY); 
-        // New start
+         */ // New start
         // Call API endpoint to get Account Id with the response code
         const options = {
             method: "POST",
@@ -613,44 +611,14 @@ var config = {
             }
         };
         axios.request(options).then(function(response) {
-            // console.log(response.data.id);
-            // console.log(JSON.stringify(response.data.id));
-            // alert(JSON.stringify(response.data.id));
             console.log(response.data);
             console.log(JSON.stringify(response.data));
             alert(JSON.stringify(response.data));
         // console.log("MONO_PUBLIC_KEY", process.env.MONO_PUBLIC_KEY);
         // console.log("MONO_SEC_KEY", process.env.MONO_SEC_KEY);
-        // Get identity
-        // New start
-        // let response = await axios.get(`${MONO_BASE_URL}/accounts/${accountId}/identity`, { headers: headers });
-        // const options = {
-        //   method: 'GET',
-        //   url: `${process.env.MONO_BASE_URL}/accounts/${response.data.id}/identity`,
-        //   headers: {
-        //     accept: 'application/json',
-        //     'mono-sec-key': process.env.MONO_SEC_KEY,//'test_sk_W1r0TVeO63Ry4PbW846N',
-        //     'Content-Type': 'application/json'
-        //   },
-        //   // data: { code: response.code } //{ code: '3434345' }
-        // };
-        // axios
-        //   .request(options)
-        //   .then(function (response) {
-        //     console.log(response.data);
-        //     console.log(JSON.stringify(response.data.bvn));
-        //     alert(JSON.stringify(response.data));
-        //   })
-        //   .catch(function (error) {
-        //   console.error(error);
-        // }
-        // );
-        // New End
         }).catch(function(error) {
             console.error(error);
         });
-    // New End
-    //  Refactor
     },
     onClose: function() {
         console.log("user closed the widget.");

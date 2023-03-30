@@ -5,9 +5,7 @@
   "description": "This is a simple HTML and vanilla Javascript implementation of the Mono Connect widget. To get started:",
   
   "version": "1.0.0",
-  
-  "main": "index.html",
-  
+  "modifier" :"Michael Alao",
   "scripts": {
   
     
