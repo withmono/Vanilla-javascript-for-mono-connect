@@ -5,7 +5,9 @@
   "description": "This is a simple HTML and vanilla Javascript implementation of the Mono Connect widget. To get started:",
   
   "version": "1.0.0",
-  "modifier" :"Michael Alao",
+  
+  "modifier": "Michael Alao",
+  
   "scripts": {
   
     
@@ -54,6 +56,13 @@
   
     
   "regenerator-runtime": "^0.13.11"
+  
+  },
+  
+  "devDependencies": {
+  
+    
+  "@types/node": "^18.15.11"
   
   }
 }
